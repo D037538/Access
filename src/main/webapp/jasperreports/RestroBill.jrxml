@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="235" pageHeight="496" columnWidth="195" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="33c4d510-ed34-4bc8-8a5f-7adff560cbb8">
+	<property name="ireport.zoom" value="1.9965000000000042"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="194"/>
+	<parameter name="invoice_no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT rp.`restro_name`,rp.`restro_address`,rp.`restro_contact_no`,rp.`restro_gstin`,fb.`fb_create_date`,fb.`fb_id`,
+m.`menu_name`,tot.`tot_qty`,tot.`tot_total`,fb.`fb_cgst_total`,fb.`fb_sgst_total`,fb.`fb_igst_total`,fb.`fb_discount_total`,
+fb.`fb_grand_total`,fb.`fb_create_date`
+
+FROM `foodbill` AS FB
+INNER JOIN `temp_order_table` AS tot ON FB.`fb_id`=tot.`tot_fb_id`
+INNER JOIN `menu` AS m ON tot.`tot_menu_id`=m.`menu_id`
+INNER JOIN `restro_profile` AS rp
+WHERE fb.`fb_id`=$P{invoice_no}]]>
+	</queryString>
+	<field name="restro_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="restro_address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="restro_contact_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="restro_gstin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_create_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="menu_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tot_qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tot_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_cgst_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_sgst_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_igst_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_discount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fb_grand_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="96" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="195" height="20" uuid="8727b7dc-1217-40ee-8472-3fe0a7dc3670"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{restro_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="21" width="195" height="20" uuid="23d7f4d3-4d96-4793-a8e4-9f4b60af15ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{restro_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="195" height="20" uuid="a72ee77f-49ee-4963-83ba-3b8e2d6741ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{restro_contact_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="58" width="195" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="7a2e5998-f800-4aa4-8418-35c749fc7c4c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Bill/Invoice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="78" width="26" height="18" uuid="8f86845e-a753-4a94-b01b-9212cdea9dab"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="78" width="38" height="18" uuid="8c389121-4d10-4c75-b4a1-23f96e92c594"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Bill No:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="78" width="57" height="18" uuid="bff4858c-d317-464c-8e39-9457c47ef175"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_id}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="195" height="1" uuid="d90cf0ee-d04b-4e9e-bf7b-50e7624be282"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="1" height="94" uuid="3143d1cc-470a-46c0-844b-c3797a66881a"/>
+			</line>
+			<line>
+				<reportElement x="194" y="1" width="1" height="95" uuid="7c2e65da-cdcf-46a4-80b4-bab4386060f2"/>
+			</line>
+			<textField>
+				<reportElement x="29" y="78" width="68" height="18" uuid="40d1e76a-fd80-42bf-ba93-12424487b125"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_create_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="98" height="20" backcolor="#CCCCCC" uuid="d1d225a4-30a8-45b2-83ff-593c0c797e4e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Particulars]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="98" y="0" width="42" height="20" backcolor="#CCCCCC" uuid="df5e3fc9-e681-4567-8e3f-366b4788ed66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="140" y="0" width="55" height="20" backcolor="#CCCCCC" uuid="07bfb9b6-65aa-47fc-82c6-6f46fcd02552"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Amount]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="195" height="1" uuid="80de6a49-48d9-4826-882c-4dfe267d5321"/>
+			</line>
+			<line>
+				<reportElement x="0" y="20" width="195" height="1" uuid="7e72bbe7-5372-4afe-b541-e22c5aaf7202"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="20" uuid="1f59d158-0e31-4d44-86af-537e2f59623c"/>
+			</line>
+			<line>
+				<reportElement x="194" y="0" width="1" height="21" uuid="2c0024bc-9115-4a34-b917-9c2759b1fb81"/>
+			</line>
+			<line>
+				<reportElement x="97" y="1" width="1" height="20" uuid="fb226811-0e6b-4460-8fc8-7ab8bee4d164"/>
+			</line>
+			<line>
+				<reportElement x="139" y="0" width="1" height="21" uuid="e61614a5-fb01-4064-9bb7-cec54a9d844e"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="98" height="20" uuid="1a5da54f-0b2c-45ec-a8d4-0bc0416ad585"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{menu_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="195" height="1" uuid="2f58e5e1-ec11-485a-bd19-734c93a286a8"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="19" uuid="ec230cbe-0530-43b5-8a41-3689ccb72ae8"/>
+			</line>
+			<line>
+				<reportElement x="97" y="0" width="1" height="19" uuid="c651c838-c8b2-46f2-9ddd-4e2acc1ed335"/>
+			</line>
+			<line>
+				<reportElement x="139" y="0" width="1" height="19" uuid="29ab81e2-1678-4656-979c-bf6ff207ed96"/>
+			</line>
+			<line>
+				<reportElement x="194" y="0" width="1" height="19" uuid="35b60ad4-3b86-4fbb-bda9-ab3ccc2e74b3"/>
+			</line>
+			<textField>
+				<reportElement x="98" y="0" width="42" height="20" uuid="d2cf58b1-9fb4-48ad-8812-6806fe8bd64a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tot_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="55" height="20" uuid="2da0983e-3738-492a-a878-8d45b54cbed7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tot_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="137">
+			<staticText>
+				<reportElement x="68" y="75" width="68" height="20" uuid="8f019b3a-7d00-46a2-98da-9f1d9169cc4b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Total Amount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="-182" width="55" height="20" uuid="111b2fda-8188-4328-97b6-d5a352e4bda0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CGST:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="37" width="55" height="20" uuid="a7a0da60-b01a-4463-bc8d-350c3641934d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[IGST:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="18" width="55" height="20" uuid="141b5484-2d89-45fd-a1a3-dd5c9ce49d56"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[SGST:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="56" width="55" height="20" uuid="4b4f20de-13e1-4a16-b8b5-659318ef99ca"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Discount:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="1" height="135" uuid="868e7103-97f2-4ce2-8927-58bd44136a19"/>
+			</line>
+			<line>
+				<reportElement x="194" y="-1" width="1" height="136" uuid="c7af6df0-259b-43d9-8430-75e369deb2de"/>
+			</line>
+			<line>
+				<reportElement x="1" y="134" width="193" height="1" uuid="4294d28d-62c8-482b-9909-6d6af73c045c"/>
+			</line>
+			<textField>
+				<reportElement x="140" y="-182" width="55" height="20" uuid="28b851e1-e1b1-4b76-91f0-2f65f9c3fd97"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_cgst_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="19" width="54" height="20" uuid="49c84985-3646-4437-a2d6-055aa9fac520"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_sgst_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="38" width="55" height="20" uuid="3a2ad6d5-73cc-42d2-9c92-3f07f2b416f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_igst_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="57" width="55" height="20" uuid="0a16a9a2-f715-4f60-98a8-1321c5b75d2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_discount_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="76" width="54" height="20" uuid="4144506c-062e-41ca-9489-64bac058ab88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_grand_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="0" width="54" height="19" uuid="be3a399b-a3a6-4e04-a391-88bd733a7022"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ CGST:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="-1" width="55" height="20" uuid="345f29f3-ea01-4397-a6dd-6b0eb35563e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fb_cgst_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="95" width="100" height="20" uuid="778c7c7d-e320-4b06-9fbc-3b1595b56fe1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ GSTN NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="114" width="98" height="20" uuid="96120d6c-dccd-4fb4-8f23-5208bd481566"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Thank you!!!!]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="94" width="94" height="20" uuid="5d5afac9-2f00-4a5f-947e-af7c656b4f57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{restro_gstin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="101" y="114" width="94" height="20" uuid="8399f9e0-d309-44b2-8e4f-8aaa134d8ff8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Visit again...]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
